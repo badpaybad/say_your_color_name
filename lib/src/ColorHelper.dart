@@ -31,7 +31,7 @@ class ColorHelper {
   //http://kleur.werkvanbart.nl/color-name-hue-tool/js/ntc.js
 
   List<dynamic> convertToMatrixRgb(Uint8List imgInJpg,{brightness: 1.5, contrast: 1.2, saturation: 1.3}  ) {
-    var decodedImage = DartImage.decodeJpg(imgInJpg);
+    var decodedImage = DartImage.decodeImage(imgInJpg);
 
     decodedImage= DartImage.adjustColor(decodedImage!, brightness: brightness, contrast: contrast, saturation: saturation);
 
@@ -60,6 +60,29 @@ class ColorHelper {
     // }
     var decodedImageUnit8list = DartImage.encodePng(decodedImage);
     return [imgArr, decodedImageUnit8list];
+  }
+
+  Future<dynamic> getColorNameFromImage(Uint8List img)async{
+    var temp = ColorHelper.instance
+        .convertToMatrixRgb(img!);
+    var matrixRgb = temp[0];
+    var rtb = 0, gtb = 0, btb = 0;
+    for (var i = 0; i < matrixRgb.length; i = i + 3) {
+      int r = matrixRgb[i][0];
+      int g = matrixRgb[i][1];
+      int b = matrixRgb[i][2];
+      rtb = rtb + r;
+      gtb = gtb + g;
+      btb = btb + b;
+    }
+
+    rtb = rtb ~/ matrixRgb.length;
+    gtb = (gtb / matrixRgb.length).toInt();
+    btb = (btb / matrixRgb.length).toInt();
+
+    var hex = ColorHelper.instance.rgbToHex(rtb, gtb, btb);
+    var name = ColorHelper.instance.name(hex);
+    return name;
   }
 
   name(String colorHexString) {

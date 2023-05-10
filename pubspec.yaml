@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   image: 4.0.15
+  http: 0.13.6
 
 dev_dependencies:
   flutter_test:
@@ -26,7 +27,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: nguyen.phan.du.say_your_color_name
+        package: say_your_color_name
         pluginClass: say_your_color_name
   # To add assets to your package, add an assets section, like this:
   # assets:
