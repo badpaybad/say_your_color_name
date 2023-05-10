@@ -1,8 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:say_your_color_name/say_your_color_name.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
+
+import 'package:say_your_color_name_example/ColorHelper.dart';
 
 Future<void> main() async {
   test('adds one to input values', () async {
