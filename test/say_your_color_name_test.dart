@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:say_your_color_name/self.dart';
+import 'package:say_your_color_name/say_your_color_name.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
